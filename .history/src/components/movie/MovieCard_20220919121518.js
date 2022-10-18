@@ -1,0 +1,31 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+const MovieCard = ({ item }) => {
+	const { title, vote_average, release_date, poster_path, id } = item;
+	const navigate = useNavigate();
+	return (
+		<div>
+			<div className="movie-card rounded-lg p-3 bg-slate-800 text-white select-none transition ease-in-out delay-100 hover:-translate-y-2 hover:scale-110 duration-300">
+				<img
+					src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+					alt=""
+					className="w-full h-[250px] object-cover rounded-lg mb-5"
+				/>
+				<h3 className=" text-sm font-bold mb-3">{title}</h3>
+				<div className="flex items-center justify-between text-sm opacity-50 mb-10">
+					<span>{new Date(release_date).getFullYear()}</span>
+					<span>{vote_average}</span>
+				</div>
+				<button
+					onClick={() => navigate(`/movie/${id}`)}
+					className="py-3 px-6 rounded-lg capitalize bg-primary w-full"
+				>
+					Watch Now
+				</button>
+			</div>
+		</div>
+	);
+};
+
+export default MovieCard;
